@@ -67,6 +67,14 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YTo-So-NGZ">
+                                <rect key="frame" x="310" y="87" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Edit"/>
+                                <connections>
+                                    <action selector="EditButtonPressed:" destination="QBp-mN-sAA" eventType="touchUpInside" id="yO5-aY-IUZ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -76,6 +84,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="sfD-C7-DYR"/>
                     </view>
+                    <connections>
+                        <outlet property="taskName" destination="625-aK-mhf" id="XsC-Sx-06e"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tv4-0C-FS2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
