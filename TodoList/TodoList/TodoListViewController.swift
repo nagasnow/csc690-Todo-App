@@ -24,6 +24,16 @@ class TodoListViewController: UITableViewController {
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print(todoItems[indexPath.row])
+        
+        performSegue(withIdentifier: "taskTransition", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        <#code#>
+    }
+    
     @IBAction func addTaskButtonPressed(_ sender: Any) {
         let alertController = UIAlertController(title: "Name of task?", message: "", preferredStyle: .alert)
         let confirmAction = UIAlertAction(title: "OK", style: .default) { (_) in

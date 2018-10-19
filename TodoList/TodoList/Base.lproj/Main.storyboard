@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -44,10 +45,41 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="QBp-mN-sAA" kind="show" identifier="taskTransition" id="pif-3i-ass"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c1S-D4-kXS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="992.79999999999995" y="71.514242878560722"/>
+        </scene>
+        <!--Display Task View Controller-->
+        <scene sceneID="IbO-dX-AiD">
+            <objects>
+                <viewController id="QBp-mN-sAA" customClass="DisplayTaskViewController" customModule="TodoList" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="dHP-UQ-kf8">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="625-aK-mhf">
+                                <rect key="frame" x="16" y="92" width="343" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="625-aK-mhf" firstAttribute="top" secondItem="sfD-C7-DYR" secondAttribute="top" constant="28" id="BTF-Fd-c0p"/>
+                            <constraint firstItem="625-aK-mhf" firstAttribute="leading" secondItem="sfD-C7-DYR" secondAttribute="leading" constant="16" id="Ckd-yS-Kag"/>
+                            <constraint firstItem="sfD-C7-DYR" firstAttribute="trailing" secondItem="625-aK-mhf" secondAttribute="trailing" constant="16" id="iVM-TY-Bq7"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="sfD-C7-DYR"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tv4-0C-FS2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1901.5999999999999" y="71.514242878560722"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="KR1-XF-3H5">

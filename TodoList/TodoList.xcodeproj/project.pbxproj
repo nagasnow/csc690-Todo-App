@@ -14,6 +14,7 @@
 		1DDC1DC821783BC5001E0DE0 /* TodoListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DDC1DC721783BC5001E0DE0 /* TodoListTests.swift */; };
 		1DDC1DD321783BC5001E0DE0 /* TodoListUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DDC1DD221783BC5001E0DE0 /* TodoListUITests.swift */; };
 		1DDC1DE121783C5F001E0DE0 /* TodoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DDC1DE021783C5F001E0DE0 /* TodoListViewController.swift */; };
+		A40C9E9321796FFE005F6EE8 /* DisplayTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40C9E9221796FFE005F6EE8 /* DisplayTaskViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		1DDC1DD221783BC5001E0DE0 /* TodoListUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListUITests.swift; sourceTree = "<group>"; };
 		1DDC1DD421783BC5001E0DE0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1DDC1DE021783C5F001E0DE0 /* TodoListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListViewController.swift; sourceTree = "<group>"; };
+		A40C9E9221796FFE005F6EE8 /* DisplayTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayTaskViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +101,7 @@
 			children = (
 				1DDC1DB221783BBD001E0DE0 /* AppDelegate.swift */,
 				1DDC1DE021783C5F001E0DE0 /* TodoListViewController.swift */,
+				A40C9E9221796FFE005F6EE8 /* DisplayTaskViewController.swift */,
 				1DDC1DB621783BBD001E0DE0 /* Main.storyboard */,
 				1DDC1DB921783BC4001E0DE0 /* Assets.xcassets */,
 				1DDC1DBB21783BC4001E0DE0 /* LaunchScreen.storyboard */,
@@ -256,6 +259,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A40C9E9321796FFE005F6EE8 /* DisplayTaskViewController.swift in Sources */,
 				1DDC1DE121783C5F001E0DE0 /* TodoListViewController.swift in Sources */,
 				1DDC1DB321783BBD001E0DE0 /* AppDelegate.swift in Sources */,
 			);
