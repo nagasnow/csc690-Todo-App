@@ -17,7 +17,11 @@ class TodoListViewController: UITableViewController {
     let defaults = UserDefaults.standard
     
     override func viewWillAppear(_ animation:Bool) {
-        todoItems = defaults.array(forKey: "MyKey") as! [String]
+        if(defaults.array(forKey: "MyKey") == nil) {
+            self.defaults.set(self.todoItems,forKey: "MyKey")
+        } else {
+            todoItems = defaults.array(forKey: "MyKey") as! [String]
+        }
     }
     
     func onUserAction(stringData:String,numData:Int) {
@@ -26,6 +30,15 @@ class TodoListViewController: UITableViewController {
         print("Selected Row: " + String(selectedRow))
         print("String : " + receivedString)
         self.tableView.reloadData()
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            
+            self.todoItems.remove(at: indexPath.row)
+            self.tableView.deleteRows(at: [indexPath], with: .automatic)
+            self.defaults.set(self.todoItems,forKey: "MyKey")
+        }
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

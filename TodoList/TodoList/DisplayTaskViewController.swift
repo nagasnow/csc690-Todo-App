@@ -42,11 +42,4 @@ class DisplayTaskViewController: UIViewController {
         
         self.present(alertController, animated: true, completion: nil)
     }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let ListViewController = segue.destination as? TodoListViewController
-        ListViewController?.receivedString = self.taskName.text!
-        ListViewController?.receivedNum = cellNumber
-    }
-    
 }
