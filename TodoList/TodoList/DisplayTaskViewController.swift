@@ -11,12 +11,16 @@ import UIKit
 class DisplayTaskViewController: UIViewController {
     
     @IBOutlet weak var taskName: UILabel!
+    var mainViewController:TodoListViewController?
     
+    var cellNumber = 0
     var receivedString = ""
+    var receivedNum = 0
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewWillAppear(_ animation:Bool) {
+        super.viewWillAppear(animation)
         taskName.text = receivedString
+        cellNumber = receivedNum
     }
     
     @IBAction func EditButtonPressed(_ sender: Any) {
@@ -24,6 +28,7 @@ class DisplayTaskViewController: UIViewController {
         let confirmAction = UIAlertAction(title: "Confirm", style: .default) { (_) in
             let newTaskName = alertController.textFields?[0].text
             self.taskName.text = newTaskName
+            self.mainViewController?.onUserAction(stringData: newTaskName!, numData: self.cellNumber)
         }
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (_) in }
@@ -39,7 +44,9 @@ class DisplayTaskViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let firstViewController = segue.destination as? TodoListViewController
-        firstViewController?.receivedString = self.taskName.text!
+        let ListViewController = segue.destination as? TodoListViewController
+        ListViewController?.receivedString = self.taskName.text!
+        ListViewController?.receivedNum = cellNumber
     }
+    
 }

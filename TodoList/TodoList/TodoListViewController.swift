@@ -12,11 +12,20 @@ class TodoListViewController: UITableViewController {
     
     var todoItems: [String] = ["Brush Teeth", "Do CSC690 Assignment 2", "Make Dinner"]
     var selectedRow: Int = 0
-    var receivedString = ""
+    var receivedString = "Brush Teeth"
+    var receivedNum = 0
+    let defaults = UserDefaults.standard
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        todoItems[selectedRow] = receivedString
+    override func viewWillAppear(_ animation:Bool) {
+        todoItems = defaults.array(forKey: "MyKey") as! [String]
+    }
+    
+    func onUserAction(stringData:String,numData:Int) {
+        selectedRow = numData
+        todoItems[selectedRow] = stringData
+        print("Selected Row: " + String(selectedRow))
+        print("String : " + receivedString)
+        self.tableView.reloadData()
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -36,10 +45,11 @@ class TodoListViewController: UITableViewController {
         selectedRow = indexPath.row
         performSegue(withIdentifier: "taskTransition", sender: self)
     }
-    
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let secondViewController = segue.destination as? DisplayTaskViewController
         secondViewController?.receivedString = todoItems[selectedRow]
+        secondViewController?.receivedNum = selectedRow
     }
     
     @IBAction func addTaskButtonPressed(_ sender: Any) {
@@ -48,6 +58,7 @@ class TodoListViewController: UITableViewController {
             let taskName = alertController.textFields?[0].text
             self.todoItems.append(taskName!)
             self.tableView.reloadData()
+            self.defaults.set(self.todoItems,forKey: "MyKey")
         }
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (_) in }
