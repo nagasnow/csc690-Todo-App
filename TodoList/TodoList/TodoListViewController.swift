@@ -33,7 +33,7 @@ class TodoListViewController: UITableViewController {
         let todoItem = todoItems[indexPath.row]
         let completeTodoImage = UIImage(data: completeTodoImages[indexPath.row])
         
-        let cell = self.tableView.dequeueReusableCell(withIdentifier: "tasksCell") as! UITableViewCell
+        let cell = self.tableView.dequeueReusableCell(withIdentifier: "tasksCell")! 
         cell.textLabel?.text = todoItem
         cell.imageView?.image = completeTodoImage
         return cell
