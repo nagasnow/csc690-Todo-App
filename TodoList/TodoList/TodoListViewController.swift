@@ -22,6 +22,7 @@ class TodoListViewController: UITableViewController {
             todoItems = defaults.array(forKey: "todoNamesKey") as! [String]
             completeTodoImages = defaults.array(forKey:"completeKey") as! [Data]
         }
+        
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -41,7 +42,8 @@ class TodoListViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let completeTitle = NSLocalizedString("Complete", comment: "Complete action")
         let completeAction = UITableViewRowAction(style: .normal, title: completeTitle) {
-            (action, indexPath) in self.completeTodoImages[indexPath.row] = UIImagePNGRepresentation(UIImage(named: "check")!)!
+            (action, indexPath) in
+            self.completeTodoImages[indexPath.row] = UIImagePNGRepresentation(UIImage(named: "check")!)!
             self.tableView.reloadData()
             self.defaults.set(self.completeTodoImages, forKey:"completeKey")
         }
