@@ -24,7 +24,7 @@
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="lF5-eC-4S7">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="tasksCell" id="lF5-eC-4S7">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="lF5-eC-4S7" id="d6y-f0-OZI">
@@ -39,7 +39,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="kh6-xR-7Fz">
-                        <barButtonItem key="rightBarButtonItem" title="task" id="csF-rd-Xzf">
+                        <barButtonItem key="rightBarButtonItem" title="Add Task" id="csF-rd-Xzf">
                             <connections>
                                 <action selector="addTaskButtonPressed:" destination="T7u-ar-sRo" id="PFJ-bg-M3R"/>
                             </connections>
