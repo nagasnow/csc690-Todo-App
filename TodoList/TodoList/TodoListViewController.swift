@@ -10,28 +10,24 @@ import UIKit
 
 class TodoListViewController: UITableViewController {
     
-    var todoItems: [String] = ["Brush Teeth", "Do CSC690 Assignment 2", "Make Dinner"]
-    var completeTodoImages: [Data] = [UIImagePNGRepresentation(UIImage(named: "noCheck")!)!, UIImagePNGRepresentation(UIImage(named: "noCheck")!)!, UIImagePNGRepresentation(UIImage(named: "noCheck")!)!]
-    let defaults = UserDefaults.standard
+    var tasks = Tasks()
+    var taskStatus = TaskStatus()
     
     override func viewWillAppear(_ animation:Bool) {
-        if(defaults.array(forKey: "todoNamesKey") == nil || defaults.array(forKey: "completeKey") == nil) {
-            self.defaults.set(self.todoItems,forKey: "todoNamesKey")
-            self.defaults.set(self.completeTodoImages, forKey: "completeKey")
-        } else {
-            todoItems = defaults.array(forKey: "todoNamesKey") as! [String]
-            completeTodoImages = defaults.array(forKey:"completeKey") as! [Data]
-        }
-        
+        tasks.loadDefaults()
+        taskStatus.loadDefaults()
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return todoItems.count
+        return tasks.getCount()
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let todoItem = todoItems[indexPath.row]
-        let completeTodoImage = UIImage(data: completeTodoImages[indexPath.row])
+        let todoItem = tasks.getTodoItem(index: indexPath.row)
+        var completeTodoImage = UIImage(named:"noCheck")
+        if(taskStatus.getTaskStatus(index: indexPath.row)) {
+            completeTodoImage = UIImage(named:"check")
+        }
         
         let cell = self.tableView.dequeueReusableCell(withIdentifier: "tasksCell")! 
         cell.textLabel?.text = todoItem
@@ -40,12 +36,12 @@ class TodoListViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        
         let completeTitle = NSLocalizedString("Complete", comment: "Complete action")
         let completeAction = UITableViewRowAction(style: .normal, title: completeTitle) {
             (action, indexPath) in
-            self.completeTodoImages[indexPath.row] = UIImagePNGRepresentation(UIImage(named: "check")!)!
+            self.taskStatus.setTaskStatusTrue(index: indexPath.row)
             self.tableView.reloadData()
-            self.defaults.set(self.completeTodoImages, forKey:"completeKey")
         }
         completeAction.backgroundColor = UIColor.green
         
@@ -54,9 +50,8 @@ class TodoListViewController: UITableViewController {
             let alertController = UIAlertController(title: "Rename Task?", message: "", preferredStyle: .alert)
             let confirmAction = UIAlertAction(title: "OK", style: .default) { (_) in
                 let taskName = alertController.textFields?[0].text
-                self.todoItems[indexPath.row] = taskName!
+                self.tasks.setTodoItem(index:indexPath.row, newName:taskName!)
                 self.tableView.reloadData()
-                self.defaults.set(self.todoItems,forKey: "todoNamesKey")
             }
             
             let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (_) in }
@@ -74,11 +69,10 @@ class TodoListViewController: UITableViewController {
         
         let deleteTitle = NSLocalizedString("Delete", comment: "Delete action")
         let deleteAction = UITableViewRowAction(style: .destructive, title: deleteTitle) {
-            (action, indexPath) in self.todoItems.remove(at: indexPath.row)
-            self.completeTodoImages.remove(at:indexPath.row)
+            (action, indexPath) in
+            self.tasks.removeTodoItem(index: indexPath.row)
+            self.taskStatus.removeTaskStatus(index: indexPath.row)
             self.tableView.reloadData()
-            self.defaults.set(self.todoItems, forKey: "todoNamesKey")
-            self.defaults.set(self.completeTodoImages, forKey:"completeKey")
         }
         
         return [deleteAction, editAction, completeAction]
@@ -88,11 +82,9 @@ class TodoListViewController: UITableViewController {
         let alertController = UIAlertController(title: "Name of task?", message: "", preferredStyle: .alert)
         let confirmAction = UIAlertAction(title: "OK", style: .default) { (_) in
             let taskName = alertController.textFields?[0].text
-            self.todoItems.append(taskName!)
-            self.completeTodoImages.append(UIImagePNGRepresentation(UIImage(named: "noCheck")!)!)
+            self.tasks.appendTodoItem(newTask: taskName!)
+            self.taskStatus.appendTaskStatus()
             self.tableView.reloadData()
-            self.defaults.set(self.todoItems,forKey: "todoNamesKey")
-            self.defaults.set(self.completeTodoImages, forKey:"completeKey")
         }
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (_) in }
