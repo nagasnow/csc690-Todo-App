@@ -40,7 +40,7 @@ class TodoListViewController: UITableViewController {
         let completeTitle = NSLocalizedString("Complete", comment: "Complete action")
         let completeAction = UITableViewRowAction(style: .normal, title: completeTitle) {
             (action, indexPath) in
-            self.taskStatus.setTaskStatusTrue(index: indexPath.row)
+            self.taskStatus.completeTask(index: indexPath.row)
             self.tableView.reloadData()
         }
         completeAction.backgroundColor = UIColor.green

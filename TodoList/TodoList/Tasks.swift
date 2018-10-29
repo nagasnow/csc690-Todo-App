@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Tasks {
+struct Tasks:Equatable {
     
     var todoItems: [String] = ["Brush Teeth", "Do CSC690 Assignment 2", "Make Dinner"]
     let defaults = UserDefaults.standard

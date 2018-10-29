@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct TaskStatus {
+struct TaskStatus:Equatable {
     
     var taskStatus: [Bool] = [false,false,false]
     let defaults = UserDefaults.standard
@@ -21,7 +21,7 @@ struct TaskStatus {
         }
     }
     
-    mutating func setTaskStatusTrue(index: Int) {
+    mutating func completeTask(index: Int) {
         self.taskStatus[index] = true
         self.defaults.set(self.taskStatus, forKey:"completeKey")
     }
